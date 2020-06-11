@@ -56,7 +56,7 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 	public ArrayList<BLogComment> selectallcomments(Blog  blog) {
 		try
 	     {
-	     return (ArrayList<BLogComment>) sessionfactory.getCurrentSession().createCriteria (Blog.class).
+	     return (ArrayList<BLogComment>) sessionfactory.getCurrentSession().createCriteria (BLogComment.class).
 	    		  add(Restrictions.eq("blog",blog)).list();
 	     }
 		catch(Exception e) {

@@ -10,6 +10,6 @@ public interface ICustomerDAO {
 	boolean deleteCustomer(Customer customer);
 	boolean updateCustomer(Customer customer);
 	ArrayList<Customer> selectAllCustomer();
-	Customer selectOneCustomer(int cus_Id);
+	Customer selectOneCustomer(String cus_Email);
 	
 }

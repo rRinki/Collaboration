@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 
 import com.niit.collaborationbackend.DAO.IJobsDAO;
 import com.niit.collaborationbackend.Modal.Jobs;
+
+
 @Repository("jobsdao")
-@Transactional
+@Transactional 
 public class JobsDAOImpl implements IJobsDAO {
 	
 	@Autowired
@@ -49,7 +51,30 @@ public class JobsDAOImpl implements IJobsDAO {
 			return false;
 		}
 		}
-
+	@Override
+	public ArrayList<Jobs> selectUnApprovedJobs() {
+		try
+	     {
+	     return (ArrayList<Jobs>) sessionfactory.getCurrentSession().createCriteria (Jobs.class).
+	    		  add(Restrictions.eq("status",false));
+	     }
+		catch(Exception e) {
+	      System.out.println(e.getMessage());
+	      return null;
+	     }
+	}
+	@Override
+	public ArrayList<Jobs> selectJobsofOneuser(int cus_Id) {
+		try
+	     {
+	     return (ArrayList<Jobs>) sessionfactory.getCurrentSession().createCriteria (Jobs.class).
+	    		  add(Restrictions.eq("customer",cus_Id)).list();
+	     }
+		catch(Exception e) {
+	      System.out.println(e.getMessage());
+	      return null;
+	     }
+	}
 	@Override
 	public ArrayList<Jobs> selectallJobs() {
 		try {

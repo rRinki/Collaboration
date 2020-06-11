@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.niit.collaborationbackend.DAO.IBlogDAO;
 import com.niit.collaborationbackend.Modal.Blog;
+import com.niit.collaborationbackend.Modal.Customer;
 
 
 @Repository("blogdao")
@@ -95,18 +96,15 @@ public class BlogDAOImpl implements IBlogDAO {
 	     }
 	}
 	
-
 	@Override
 	public Blog selectOneBlog(int blog_Id) {
-		try
-	     {
-	     return (Blog) sessionfactory.getCurrentSession().createCriteria (Blog.class).
-	    		  add(Restrictions.eq("blogid",blog_Id));
-	     }
-		catch(Exception e) {
-	      System.out.println(e.getMessage());
-	      return null;
-	     }
-	}
-
+		try {
+				return (Blog) sessionfactory.getCurrentSession().createCriteria(Blog.class).
+						add(Restrictions.eq("blogid", blog_Id)).list();
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
+}
 }

@@ -13,4 +13,5 @@ public interface IBlogDAO {
 	ArrayList<Blog> selectallBlogsOfOneUser(int cus_Id);
 	ArrayList<Blog> selectUnApprovedBlogs();
 	Blog selectOneBlog(int blog_Id);
+	 
 }

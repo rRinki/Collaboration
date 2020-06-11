@@ -67,10 +67,10 @@ public class CustomerDAOImpl implements ICustomerDAO {
 	}
 
 	@Override
-	public Customer selectOneCustomer(int cus_Id) {
+	public Customer selectOneCustomer(String cus_Email) {
 		try {
 			return (Customer) sessionfactory.getCurrentSession().createCriteria(Customer.class).
-			add(Restrictions.eq("cust_id", cus_Id)).list();
+			add(Restrictions.eq("cust_email", cus_Email)).list();
 		}
 		catch (Exception e)
 		{

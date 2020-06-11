@@ -10,7 +10,7 @@ public interface IAppliedJobs {
 
 	boolean addAppliedJobs(Appliedjobs Ajobs);
 	ArrayList<Appliedjobs> allAppliedjobs(Jobs jobs);
-	ArrayList<Appliedjobs> myAppliedjobs(Customer cjobs);
+	ArrayList<Appliedjobs> myAppliedjobs(Customer customer);
 	ArrayList<Appliedjobs> selectOneAppliedjobs(int appliedjob_Id);
 	
 	

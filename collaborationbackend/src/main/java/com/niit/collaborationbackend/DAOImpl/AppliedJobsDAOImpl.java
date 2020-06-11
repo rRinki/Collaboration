@@ -42,10 +42,10 @@ public class AppliedJobsDAOImpl implements IAppliedJobs {
 	}
 
 	@Override
-	public ArrayList<Appliedjobs> myAppliedjobs(Customer cjobs) {
+	public ArrayList<Appliedjobs> myAppliedjobs(Customer customer) {
 		try {
 			return (ArrayList<Appliedjobs>) sessionfactory.getCurrentSession().createCriteria(Appliedjobs.class).
-					add(Restrictions.eq("Customer",cjobs)).list();
+					add(Restrictions.eq("Customer",customer)).list();
 		}
 		catch(Exception e)
 		{

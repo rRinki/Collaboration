@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.collaborationbackend.DAO.IForumanswerDAO;
+import com.niit.collaborationbackend.Modal.Forum;
 import com.niit.collaborationbackend.Modal.Forumanswer;
 
 
@@ -55,7 +56,7 @@ public class ForumanswerDAOImpl implements IForumanswerDAO {
 	}
 
 	@Override
-	public ArrayList<Forumanswer> selectAllanswer() {
+	public ArrayList<Forumanswer> selectAllanswer(Forum forum) {
 		try {
 			return (ArrayList<Forumanswer>) sessionfactory.getCurrentSession().createCriteria(Forumanswer.class)
 					.add(Restrictions.eq("status",true));
