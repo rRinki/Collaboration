@@ -31,7 +31,7 @@ public class BLogComment {
 	Customer customer;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(nullable = false, columnDefinition = "date default getdate()")
+	@Column(nullable = false, columnDefinition = "date default sysdate()")
 	Date date;
 	
 	@Column(nullable = false, columnDefinition="text")

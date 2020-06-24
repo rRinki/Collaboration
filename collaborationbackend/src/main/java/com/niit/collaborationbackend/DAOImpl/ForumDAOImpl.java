@@ -38,6 +38,7 @@ public class ForumDAOImpl implements IForumDAO {
 			sessionfactory.getCurrentSession().update(forum);
 			return true;
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -56,10 +57,10 @@ public class ForumDAOImpl implements IForumDAO {
 	public ArrayList<Forum> selectallForum() {
 		try
 	     {
-	     return (ArrayList<Forum>) sessionfactory.getCurrentSession().createCriteria (Forum.class).
-	    		  add(Restrictions.eq("status",true));
+	     return (ArrayList<Forum>) sessionfactory.getCurrentSession().createQuery("from Forum").list();
 	     }
 		catch(Exception e) {
+			System.out.println(e.getMessage());
 	      return null;
 	     }
 	}
@@ -69,9 +70,10 @@ public class ForumDAOImpl implements IForumDAO {
 		try
 		   {
 			     return (Forum)sessionfactory.getCurrentSession().createCriteria (Forum.class).
-			    		  add(Restrictions.eq("forumid",forum_Id)).list();
+			    		  add(Restrictions.eq("forum_Id",forum_Id)).uniqueResult();
 			     }
 				catch(Exception e) {
+					System.out.println(e.getMessage());
 			      return null;
 			     }
 	}

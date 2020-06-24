@@ -150,22 +150,25 @@ public class ServiceEmployeeDAOImpl implements IEmployeeService {
 		return appliedjobsdao.selectOneAppliedjobs(appliedjob_Id);
 	}
 
+
 	@Override
 	public boolean addCustomer(Customer customer) {
 		
 		return customerdao.addCustomer(customer);
 	}
 
+
+	
 	@Override
-	public boolean deleteCustomer(Customer customer) {
+	public boolean updateCustomer(Customer customer) {
 		
-		return customerdao.deleteCustomer(customer);
+		return customerdao.updateCustomer(customer);
 	}
 
 	@Override
-	public Customer selectOneCustomer(String cus_Email) {
+	public Customer selectCustomer(String cust_email) {
 		
-		return customerdao.selectOneCustomer(cus_Email);
+		return customerdao.selectCustomer(cust_email);
 	}
 
 }

@@ -33,7 +33,7 @@ public class AppliedJobsDAOImpl implements IAppliedJobs {
 	public ArrayList<Appliedjobs> allAppliedjobs(Jobs jobs) {
 		try {
 			return (ArrayList<Appliedjobs>) sessionfactory.getCurrentSession().createCriteria(Appliedjobs.class).
-					add(Restrictions.eq("Jobs", jobs)).list();
+					add(Restrictions.eq("jobs", jobs)).list();
 		}
 		catch(Exception e)
 		{
@@ -45,7 +45,7 @@ public class AppliedJobsDAOImpl implements IAppliedJobs {
 	public ArrayList<Appliedjobs> myAppliedjobs(Customer customer) {
 		try {
 			return (ArrayList<Appliedjobs>) sessionfactory.getCurrentSession().createCriteria(Appliedjobs.class).
-					add(Restrictions.eq("Customer",customer)).list();
+					add(Restrictions.eq("customer",customer)).list();
 		}
 		catch(Exception e)
 		{
@@ -57,7 +57,7 @@ public class AppliedJobsDAOImpl implements IAppliedJobs {
 	public ArrayList<Appliedjobs> selectOneAppliedjobs(int appliedjob_Id) {
 		try {
 			return (ArrayList<Appliedjobs>) sessionfactory.getCurrentSession().createCriteria(Appliedjobs.class).
-					add(Restrictions.eq("appliedjobid", appliedjob_Id)).list();
+					add(Restrictions.eq("appliedjob_Id", appliedjob_Id)).list();
 		}
 		catch(Exception e)
 		{

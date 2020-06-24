@@ -14,3 +14,4 @@ public interface IForumanswerDAO {
 		Forumanswer selectOneanswer(int forumanswers_Id);
 		
 }
+

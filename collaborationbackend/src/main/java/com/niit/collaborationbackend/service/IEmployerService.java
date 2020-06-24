@@ -15,7 +15,7 @@ public interface IEmployerService {
 	boolean deleteBlog(Blog b);
 	boolean updateBlog(Blog b);
 	ArrayList<Blog> selectallApprovedBlogs();
-	ArrayList<Blog> selectallBlogsOfOneUser(int cus_Id);
+	ArrayList<Blog> selectallBlogsOfOneUser(Customer customer);
 	
 	boolean addBlogComment(BLogComment bc);
 	boolean deleteBlogComment(BLogComment bc);
@@ -40,8 +40,8 @@ public interface IEmployerService {
 	ArrayList<Appliedjobs> myAppliedjobs(Customer customer);
 	
 	boolean addCustomer(Customer customer);
-	boolean deleteCustomer(Customer customer);
-	Customer selectOneCustomer(String cus_Email);
+	boolean updateCustomer(Customer customer);
+	Customer selectCustomer(String cust_email);
 	
 
 }

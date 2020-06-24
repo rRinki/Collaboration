@@ -37,6 +37,7 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 				sessionfactory.getCurrentSession().update(bc);
 				return true;
 			} catch (Exception e) {
+				System.out.println(e.getMessage());
 				return false;
 			}
 		}
@@ -70,7 +71,7 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 		try
 	     {
 	     return (BLogComment)sessionfactory.getCurrentSession().createCriteria (BLogComment.class).
-	    		  add(Restrictions.eq("blogcommentid",comment_Id)).list();
+	    		  add(Restrictions.eq("comment_Id",comment_Id)).uniqueResult();
 	     }
 		catch(Exception e) {
 			 System.out.println(e.getMessage());

@@ -56,7 +56,7 @@ public class JobsDAOImpl implements IJobsDAO {
 		try
 	     {
 	     return (ArrayList<Jobs>) sessionfactory.getCurrentSession().createCriteria (Jobs.class).
-	    		  add(Restrictions.eq("status",false));
+	    		  add(Restrictions.eq("job_Status",false)).list();
 	     }
 		catch(Exception e) {
 	      System.out.println(e.getMessage());
@@ -79,7 +79,7 @@ public class JobsDAOImpl implements IJobsDAO {
 	public ArrayList<Jobs> selectallJobs() {
 		try {
 			return (ArrayList<Jobs>) sessionfactory.getCurrentSession().createCriteria(Jobs.class).
-					add(Restrictions.eq("status", true));
+					add(Restrictions.eq("job_Status", true)).list();
 		}
 		catch(Exception e) {
 			return null;
@@ -90,7 +90,7 @@ public class JobsDAOImpl implements IJobsDAO {
 	public Jobs selectOneJob(int job_Id) {
 		try {
 			return (Jobs) sessionfactory.getCurrentSession().createCriteria(Jobs.class).
-					add(Restrictions.eq("jobid", job_Id));
+					add(Restrictions.eq("job_Id", job_Id)).list();
 			
 		}
 		catch(Exception e)

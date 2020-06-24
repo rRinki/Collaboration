@@ -39,7 +39,9 @@ public interface IEmployeeService {
 	ArrayList<Appliedjobs> selectOneAppliedjobs(int appliedjob_Id);
 	
 	boolean addCustomer(Customer customer);
-	boolean deleteCustomer(Customer customer);
-	Customer selectOneCustomer(String cus_Email);
+	
+	boolean updateCustomer(Customer customer);
+	
+	Customer selectCustomer(String cust_email);
 	
 	}

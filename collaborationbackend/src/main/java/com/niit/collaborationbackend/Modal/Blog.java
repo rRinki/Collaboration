@@ -18,7 +18,6 @@ public class Blog {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	int blog_Id;
 	
-
 	@Column(nullable=false,unique=true)
 	String blog_Name;
 	
@@ -26,14 +25,14 @@ public class Blog {
 	String blog_Content;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(nullable=false,columnDefinition= "date default getdate()")
+	@Column(nullable=false,columnDefinition= "date default sysdate()")
 	Date posted_Date;
 	
 	@ManyToOne
-	Customer cutomer;
+	Customer customer;
 	
 	@Column(nullable=false,columnDefinition="boolean default false")
-	boolean Status;
+	boolean blog_Status;
 
 	public int getBlog_Id() {
 		return blog_Id;
@@ -67,22 +66,20 @@ public class Blog {
 		this.posted_Date = posted_Date;
 	}
 
-	public Customer getCutomer() {
-		return cutomer;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCutomer(Customer cutomer) {
-		this.cutomer = cutomer;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
-	public boolean isStatus() {
-		return Status;
+	public boolean isBlog_Status() {
+		return blog_Status;
 	}
 
-	public void setStatus(boolean status) {
-		Status = status;
+	public void setBlog_Status(boolean blog_Status) {
+		this.blog_Status = blog_Status;
 	}
-	
-	
 
 }

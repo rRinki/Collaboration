@@ -26,8 +26,19 @@ public class Forumanswer {
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	Forum forum;
 	
+	@Column(nullable=false,columnDefinition="text")
+	String forum_Answer;
 	
-	@Column(nullable= false, columnDefinition=" default getdate()")
+	
+	public String getForum_Answer() {
+		return forum_Answer;
+	}
+
+	public void setForum_Answer(String forum_Answer) {
+		this.forum_Answer = forum_Answer;
+	}
+
+	@Column(nullable= false, columnDefinition="date default sysdate()")
 	@Temporal(TemporalType.DATE)
 	Date posted_date;
 	
@@ -36,7 +47,15 @@ public class Forumanswer {
 	Customer customer;
 	
 	@Column(nullable= false,columnDefinition="boolean default false")
-	boolean blog_Status;
+	boolean forum_Status;
+
+	public boolean isForum_Status() {
+		return forum_Status;
+	}
+
+	public void setForum_Status(boolean forum_Status) {
+		this.forum_Status = forum_Status;
+	}
 
 	public int getForumanswers_Id() {
 		return forumanswers_Id;
@@ -70,13 +89,7 @@ public class Forumanswer {
 		this.customer = customer;
 	}
 
-	public boolean isBlog_Status() {
-		return blog_Status;
-	}
-
-	public void setBlog_Status(boolean blog_Status) {
-		this.blog_Status = blog_Status;
-	}
+	
 	
 	
 

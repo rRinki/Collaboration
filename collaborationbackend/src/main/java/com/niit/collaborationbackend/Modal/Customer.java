@@ -27,6 +27,20 @@ public class Customer {
 	@Transient
 	@Column(nullable=false)
 	String cust_Password;
+	
+	@Transient
+	@Column(nullable= false)
+	String cust_Role;
+
+
+	public String getCust_Role() {
+		return cust_Role;
+	}
+
+
+	public void setCust_Role(String cust_Role) {
+		this.cust_Role = cust_Role;
+	}
 
 
 	public int getCus_Id() {
@@ -80,5 +94,4 @@ public class Customer {
 
 	
 }
-
 

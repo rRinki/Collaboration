@@ -63,9 +63,9 @@ public class ServiceEmployerDAOImpl implements IEmployerService {
 	}
 
 	@Override
-	public ArrayList<Blog> selectallBlogsOfOneUser(int cus_Id) {
+	public ArrayList<Blog> selectallBlogsOfOneUser(Customer customer) {
 		
-		return blogdao.selectallBlogsOfOneUser(cus_Id);
+		return blogdao.selectallBlogsOfOneUser(customer);
 	}
 
 	@Override
@@ -170,16 +170,18 @@ public class ServiceEmployerDAOImpl implements IEmployerService {
 		return customerdao.addCustomer(customer);
 	}
 
-	@Override
-	public boolean deleteCustomer(Customer customer) {
 
-		return customerdao.deleteCustomer(customer);
+	
+	@Override
+	public boolean updateCustomer(Customer customer) {
+		
+		return customerdao.updateCustomer(customer);
 	}
 
 	@Override
-	public Customer selectOneCustomer(String cus_Email) {
+	public Customer selectCustomer(String cust_email) {
 		
-		return customerdao.selectOneCustomer(cus_Email);
+		return customerdao.selectCustomer(cust_email);
 	}
 
 }

@@ -32,16 +32,16 @@ public class Jobs {
 	@Column(nullable=false)
 	int no_vaccany;
 	
-	@Column(nullable=false,columnDefinition="default getdate()")
+	@Column(nullable=false,columnDefinition="date default sysdate()")
 	@Temporal(TemporalType.DATE)
 	Date posted_Date;
 	
-	@Column(nullable=false,columnDefinition="default adddate(Day)")
+	@Column(nullable=false,columnDefinition="date default sysdate()+10") 
 	@Temporal(TemporalType.DATE)
 	Date last_Date;
 	
 	@Column(nullable=false)
-	String job_Status;
+	boolean job_Status;
 
 	public int getJob_Id() {
 		return job_Id;
@@ -107,13 +107,14 @@ public class Jobs {
 		this.last_Date = last_Date;
 	}
 
-	public String getJob_Status() {
+	public boolean isJob_Status() {
 		return job_Status;
 	}
 
-	public void setJob_Status(String job_Status) {
+	public void setJob_Status(boolean job_Status) {
 		this.job_Status = job_Status;
 	}
+
 	
 	
 }

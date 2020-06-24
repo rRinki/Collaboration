@@ -1,10 +1,15 @@
 package com.niit.collaborationbackend.Modal;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -23,6 +28,18 @@ public class Appliedjobs {
 	@ManyToOne
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	Customer customer;
+	
+	@Column(nullable=false,columnDefinition ="date default sysdate()" )
+	@Temporal(TemporalType.DATE)
+	Date applied_Date;
+
+	public Date getApplied_Date() {
+		return applied_Date;
+	}
+
+	public void setApplied_Date(Date applied_Date) {
+		this.applied_Date = applied_Date;
+	}
 
 	public int getAppliedjob_Id() {
 		return appliedjob_Id;

@@ -28,6 +28,7 @@ public class ForumanswerDAOImpl implements IForumanswerDAO {
 			return true;
 		}
 		catch(Exception e) {
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -39,6 +40,7 @@ public class ForumanswerDAOImpl implements IForumanswerDAO {
 			return true;
 		}
 		catch(Exception e) {
+			System.out.println(e.getMessage());
 			return false;
 			
 		}
@@ -51,6 +53,7 @@ public class ForumanswerDAOImpl implements IForumanswerDAO {
 			return true;
 		}
 		catch(Exception e) {
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -59,9 +62,10 @@ public class ForumanswerDAOImpl implements IForumanswerDAO {
 	public ArrayList<Forumanswer> selectAllanswer(Forum forum) {
 		try {
 			return (ArrayList<Forumanswer>) sessionfactory.getCurrentSession().createCriteria(Forumanswer.class)
-					.add(Restrictions.eq("status",true));
+					.add(Restrictions.eq("forum_Status",true)).list();
 		}
 		catch(Exception e) {
+			System.out.println(e.getMessage());
 			return null;
 			
 		}
@@ -72,9 +76,10 @@ public class ForumanswerDAOImpl implements IForumanswerDAO {
 		try {
 			
 		return (Forumanswer)sessionfactory.getCurrentSession().createCriteria(Forumanswer.class)
-				.add(Restrictions.eq("forumanswerid",forumanswers_Id));
+				.add(Restrictions.eq("forumanswers_Id",forumanswers_Id)).uniqueResult();
 	}
 	catch(Exception e) {
+		System.out.println(e.getMessage());
 		return null;
 	}
 	}

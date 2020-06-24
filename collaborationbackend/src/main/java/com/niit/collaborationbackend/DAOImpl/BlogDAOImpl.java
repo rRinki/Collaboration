@@ -59,11 +59,12 @@ public class BlogDAOImpl implements IBlogDAO {
 		
 		try
 	     {
+			
 	     return (ArrayList<Blog>) sessionfactory.getCurrentSession().createCriteria (Blog.class).
-	    		  add(Restrictions.eq("status",true));
+	    		  add(Restrictions.eq("blog_Status",true)).list();
 	     }
 		catch(Exception e) {
-	      
+			System.out.println(e.getMessage());
 	      return null;
 	     }
 		
@@ -71,11 +72,11 @@ public class BlogDAOImpl implements IBlogDAO {
 	}
 
 	@Override
-	public ArrayList<Blog> selectallBlogsOfOneUser(int cus_Id) {
+	public ArrayList<Blog> selectallBlogsOfOneUser(Customer customer) {
 		try
 	     {
 	     return (ArrayList<Blog>) sessionfactory.getCurrentSession().createCriteria (Blog.class).
-	    		  add(Restrictions.eq("customer",cus_Id)).list();
+	    		  add(Restrictions.eq("customer",customer)).list();
 	     }
 		catch(Exception e) {
 	      System.out.println(e.getMessage());
@@ -88,7 +89,7 @@ public class BlogDAOImpl implements IBlogDAO {
 		try
 	     {
 	     return (ArrayList<Blog>) sessionfactory.getCurrentSession().createCriteria (Blog.class).
-	    		  add(Restrictions.eq("status",false));
+	    		  add(Restrictions.eq("blog_Status",false)).list();
 	     }
 		catch(Exception e) {
 	      System.out.println(e.getMessage());
@@ -100,7 +101,7 @@ public class BlogDAOImpl implements IBlogDAO {
 	public Blog selectOneBlog(int blog_Id) {
 		try {
 				return (Blog) sessionfactory.getCurrentSession().createCriteria(Blog.class).
-						add(Restrictions.eq("blogid", blog_Id)).list();
+						add(Restrictions.eq("blog_Id", blog_Id)).uniqueResult();
 		}
 		catch (Exception e)
 		{
