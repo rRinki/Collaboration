@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.collaborationbackend.DAO.IForumDAO;
 import com.niit.collaborationbackend.DAO.IForumanswerDAO;
+import com.niit.collaborationbackend.Modal.Blog;
 import com.niit.collaborationbackend.Modal.Customer;
 import com.niit.collaborationbackend.Modal.Forum;
 import com.niit.collaborationbackend.Modal.Forumanswer;
@@ -34,6 +35,34 @@ public class ForumAnswersController {
 	@Autowired
 	IForumDAO forumdao;
 	
+	@GetMapping("/adminapproval")
+	ResponseEntity<List<Forumanswer>> selectallUnApprovedanswers(HttpSession session) 
+	{
+		ArrayList<Forumanswer> fanswerlist = forumanswerdao.selectUnapprovedanswer();
+		if (fanswerlist.isEmpty()) {
+			System.out.println("Error in if line");
+			return new ResponseEntity<List<Forumanswer>>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<List<Forumanswer>>(fanswerlist, HttpStatus.FOUND);
+		}
+
+	}
+	@GetMapping("/updatestatus")
+	ResponseEntity<Void> addMyForumanswer(@RequestParam("forumanswers_Id")int id)
+	{
+		Forumanswer forumanswer =forumanswerdao.selectOneanswer(id);
+		forumanswer.setForum_Status(true);
+		
+		if(forumanswerdao.updateAnswer(forumanswer))
+		{
+			return new ResponseEntity<Void>(HttpStatus.ACCEPTED);			
+		}
+		else
+		{
+			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+
 	@PostMapping("/addforumanswer")
 	ResponseEntity<Void> addforumAnswer(@RequestParam("forum_Id") int id, @RequestBody Forumanswer forumanswer,
 			HttpSession session) {
@@ -56,7 +85,7 @@ public class ForumAnswersController {
 		Forum forum = forumdao.selectOneForum(id);
 		Forumanswer newforumanswer = forumanswerdao.selectOneanswer(id);
 		newforumanswer.setForum(forum);
-		newforumanswer.setForum_Status(true);
+		newforumanswer.setForum_Status(false);
 		newforumanswer.setCustomer(cust);
 		newforumanswer.setForum_Answer(newforumanswer.getForum_Answer());
 		newforumanswer.setPosted_date(new Date());
@@ -73,7 +102,7 @@ public class ForumAnswersController {
 	ResponseEntity<List<Forumanswer>> selectallanswers(@RequestParam("forum_Id")int id) {
 		Forum forumanswer= forumdao.selectOneForum(id);
 	
-		ArrayList<Forumanswer> forumanswertlist = forumanswerdao.selectAllanswer(forumanswer);
+		ArrayList<Forumanswer> forumanswertlist = forumanswerdao.selectAllapprovedanswers();
 
 		if (forumanswertlist.isEmpty()) {
 			

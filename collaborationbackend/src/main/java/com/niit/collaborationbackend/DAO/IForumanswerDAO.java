@@ -12,6 +12,7 @@ public interface IForumanswerDAO {
 		boolean updateAnswer(Forumanswer fanswer);
 		ArrayList<Forumanswer> selectAllanswer(Forum forum);
 		Forumanswer selectOneanswer(int forumanswers_Id);
-		
+		ArrayList<Forumanswer> selectAllapprovedanswers();
+		ArrayList<Forumanswer> selectUnapprovedanswer();
 }
 

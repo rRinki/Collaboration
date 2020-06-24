@@ -95,4 +95,16 @@ public class ServiceAdminDAO implements IAdminService {
 		return jobsdao.selectUnApprovedJobs();
 	}
 
+	@Override
+	public ArrayList<Forumanswer> selectAllapprovedanswers() {
+		return forumanswerdao.selectAllapprovedanswers();
+		
+	}
+
+	@Override
+	public ArrayList<Forumanswer> selectUnapprovedanswer() {
+		
+	return forumanswerdao.selectUnapprovedanswer();
+	}
+
 }

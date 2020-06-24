@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.collaborationbackend.DAO.IForumanswerDAO;
+import com.niit.collaborationbackend.Modal.Blog;
 import com.niit.collaborationbackend.Modal.Forum;
 import com.niit.collaborationbackend.Modal.Forumanswer;
 
@@ -84,4 +85,31 @@ public class ForumanswerDAOImpl implements IForumanswerDAO {
 	}
 	}
 
-}
+	@Override
+	public ArrayList<Forumanswer> selectAllapprovedanswers() {
+		try
+	     {
+			
+	     return (ArrayList<Forumanswer>) sessionfactory.getCurrentSession().createCriteria (Forumanswer.class).
+	    		  add(Restrictions.eq("forum_Status",true)).list();
+	     }
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+	      return null;
+	     }
+	}
+@Override
+	public ArrayList<Forumanswer> selectUnapprovedanswer() {
+		try
+	     {
+	     return (ArrayList<Forumanswer>) sessionfactory.getCurrentSession().createCriteria (Forumanswer.class).
+	    		  add(Restrictions.eq("forum_Status",false)).list();
+	     }
+		catch(Exception e) {
+	      System.out.println(e.getMessage());
+	      return null;
+	     }
+	}
+	}
+
+

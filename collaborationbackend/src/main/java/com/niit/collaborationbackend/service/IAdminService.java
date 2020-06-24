@@ -21,7 +21,8 @@ public interface IAdminService {
 	boolean updateForum(Forum forum);
 	boolean deleteForum(Forum forum);
 	ArrayList<Forum> selectallForum();
-	
+	ArrayList<Forumanswer> selectAllapprovedanswers();
+	ArrayList<Forumanswer> selectUnapprovedanswer();
 	ArrayList<Forumanswer> selectAllanswer(Forum forum);
 	
 	ArrayList<Jobs> selectallJobs();
