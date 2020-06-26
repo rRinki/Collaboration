@@ -153,9 +153,9 @@ public class ServiceEmployerDAOImpl implements IEmployerService {
 	}
 
 	@Override
-	public ArrayList<Jobs> selectJobsofOneuser(int cus_Id) {
+	public ArrayList<Jobs> selectJobsofOneuser(Customer customer) {
 		
-		return jobsdao.selectJobsofOneuser(cus_Id);
+		return jobsdao.selectJobsofOneuser(customer);
 	}
 
 	@Override

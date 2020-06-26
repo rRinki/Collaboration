@@ -34,7 +34,7 @@ public interface IEmployerService {
 	boolean updateJobs(Jobs jobs);
 	boolean deleteJobs(Jobs jobs);
 	ArrayList<Jobs> selectallJobs();
-	ArrayList<Jobs> selectJobsofOneuser(int cus_Id);
+	ArrayList<Jobs> selectJobsofOneuser(Customer customer);
 	
 	
 	ArrayList<Appliedjobs> myAppliedjobs(Customer customer);
