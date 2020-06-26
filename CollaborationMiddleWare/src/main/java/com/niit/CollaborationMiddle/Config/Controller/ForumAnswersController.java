@@ -70,8 +70,6 @@ public class ForumAnswersController {
 		Customer cust = (Customer) session.getAttribute("custdetails");
 		forumanswer.setCustomer(cust);
 		forumanswer.setPosted_date(new Date());
-		
-		
 		if (forumanswerdao.addAnswer(forumanswer)) {
 			return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
 		} else {

@@ -34,7 +34,6 @@ public class JobsController {
 	{
 		ArrayList<Jobs> joblist = jobsdao.selectUnApprovedJobs();
 		if (joblist.isEmpty()) {
-			System.out.println("Error in if line");
 			return new ResponseEntity<List<Jobs>>(HttpStatus.NOT_FOUND);
 		} else {
 			return new ResponseEntity<List<Jobs>>(joblist, HttpStatus.FOUND);
@@ -44,7 +43,10 @@ public class JobsController {
 	@PostMapping("/addjobs")
 	ResponseEntity<Void> addJob(@RequestBody Jobs jobs,HttpSession session)
 	{
+		Customer cust=(Customer)session.getAttribute("custdetails");
+		jobs.setCustomer(cust);
 		jobs.setPosted_Date(new Date());
+		
 		
 		if(jobsdao.addJobs(jobs))
 		{
@@ -76,7 +78,6 @@ public class JobsController {
 		
 		Jobs jobs = jobsdao.selectOneJob(id);
 		jobs.setJob_Status(true);
-		
 		if(jobsdao.updateJobs(jobs))
 		{
 			return new ResponseEntity<Void>(HttpStatus.ACCEPTED);			
@@ -87,11 +88,11 @@ public class JobsController {
 		}
 	}
 	@GetMapping("/myjobs")
-	ResponseEntity<List<Jobs>> selectMyBlogs(@RequestParam ("customer")int cus_Id,HttpSession session)
+	ResponseEntity<List<Jobs>> selectMyjobs(HttpSession session)
 	{
 	
 	Customer cust = (Customer)session.getAttribute("custdetails");
-	ArrayList<Jobs> joblist= jobsdao.selectJobsofOneuser(cus_Id);
+	ArrayList<Jobs> joblist= jobsdao.selectJobsofOneuser(cust);
 	
 	if(joblist.isEmpty())
 	{
@@ -138,8 +139,8 @@ public class JobsController {
 			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
-	@DeleteMapping("/deleteblog")
-	ResponseEntity<Void> deleteMyBlog(@RequestParam("job_Id")int id)
+	@DeleteMapping("/deletejob")
+	ResponseEntity<Void> deleteMyjob(@RequestParam("job_Id")int id)
 	{
 		Jobs newjob = jobsdao.selectOneJob(id);
 		if(jobsdao.deleteJobs(newjob))
