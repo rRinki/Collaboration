@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class Jobs {
 	
@@ -31,6 +34,7 @@ public class Jobs {
 	int job_Salary;
 	
 	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	Customer customer;
 	
 	public Customer getCustomer() {

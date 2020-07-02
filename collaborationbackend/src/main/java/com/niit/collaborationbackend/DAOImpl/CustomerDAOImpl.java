@@ -73,25 +73,20 @@ public class CustomerDAOImpl implements ICustomerDAO {
 		}
 	}
 
+	
 	@Override
-	public String checkUser(Customer customer) {
-		CustCred cred = (CustCred)sessionfactory.getCurrentSession().createCriteria(CustCred.class).
-				add(Restrictions.eq("cus_Email",customer.getCus_Email())).uniqueResult();
-		if (cred==null)
-		{
-			return " User does not exist";
-		}
-		else if(cred.getCust_Password().equals(customer.getCust_Password())) {
-			if(cred.getCust_Role().equals("Employee"))
-				return "Employee";
-				else if (cred.getCust_Role().equals("Employer"))
-					return "Employer";
-				else 
-					return "Admin";
-		}
-			
-		else {
-			return "Password Incorrect";
-		}
+	public Customer checkUser(Customer customer) {
+		CustCred cred = (CustCred) sessionfactory.getCurrentSession().createCriteria(CustCred.class)
+				.add(Restrictions.eq("cus_Email", customer.getCus_Email())).uniqueResult();
+		 if (cred.getCust_Password().equals(customer.getCust_Password())) {
+		Customer cust=selectCustomer(customer.getCus_Email());
+			 cust.setCust_Role(cred.getCust_Role());
+			 return cust;
+		 }
+			else
+				
+			{
+				return null;
+			}
 	}
 }

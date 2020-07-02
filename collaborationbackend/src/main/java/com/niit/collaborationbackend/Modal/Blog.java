@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class Blog {
 	
@@ -29,6 +32,7 @@ public class Blog {
 	Date posted_Date;
 	
 	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	Customer customer;
 	
 	@Column(nullable=false,columnDefinition="boolean default false")

@@ -11,6 +11,6 @@ public interface ICustomerDAO {
 	boolean updateCustomer(Customer customer);
 	public Customer selectCustomer(String cust_email);
 	public List<Customer> selectAllCustomer();
-	public String checkUser(Customer customer);
+	public Customer checkUser(Customer customer);
 	
 }
