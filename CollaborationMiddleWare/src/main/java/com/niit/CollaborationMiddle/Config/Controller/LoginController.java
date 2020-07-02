@@ -21,19 +21,19 @@ public class LoginController {
 	ICustomerDAO customerdao;
 
 	@PostMapping("/login")
-	ResponseEntity<String> login(@RequestBody Customer customer,HttpSession httpsession)
+	ResponseEntity<Customer> login(@RequestBody Customer customer,HttpSession httpsession)
 	{
-		String result = customerdao.checkUser(customer);
-		if(result.equals("Employer")||result.equals("Employee")||result.equals("Admin"))
+		Customer result = customerdao.checkUser(customer);
+		if(result!=null)
 				{
-			httpsession.setAttribute("custdetails", customerdao.selectCustomer(customer.getCus_Email()));
-			httpsession.setAttribute("userrole", result);
+			httpsession.setAttribute("custdetails", result);
+			
 			System.out.println("Login");
-			return new ResponseEntity<String> (result,HttpStatus.OK);
+			return new ResponseEntity<Customer> (result,HttpStatus.OK);
 				}
 		else {
 			
-			return new ResponseEntity<String> (result,HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<Customer> (result,HttpStatus.NOT_ACCEPTABLE);
 		}
 }
 	@GetMapping("/logout")
